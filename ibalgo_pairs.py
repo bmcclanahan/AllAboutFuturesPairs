@@ -469,8 +469,8 @@ def get_pair_df(symbols, historical_indicators_dfs, pair_online_indicator,
     pair_df = pd.DataFrame(index=df1.index.union(df2.index).sort_values())
     pair_df.loc[df1.index, 'close_1'] = df1.close
     pair_df.loc[df2.index, 'close_2'] = df2.close
-    pair_df.loc[df1.index, 'volume_1'] = df1.close
-    pair_df.loc[df2.index, 'volume_2'] = df2.close
+    pair_df.loc[df1.index, 'volume_1'] = df1.volume
+    pair_df.loc[df2.index, 'volume_2'] = df2.volume
     pair_df = pair_df.fillna(method='ffill')
     pair_df.loc[:, 'close_diff'] = pair_df.close_1 - pair_df.close_2
     pair_df.loc[:, 'volume'] = pair_df.volume_1 + pair_df.volume_2 # could explore using a volume difference here
